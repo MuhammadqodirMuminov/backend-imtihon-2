@@ -4,14 +4,12 @@ import { read, write } from '../utils/model.js';
 
 const GET = (req, res, next) => {
 	try {
-		const events = read('events').reverse().slice(0, 9)
-
-		const acceptedEvents = events.filter(event => event.status == 'accapted')
+		const accepted = read('accepted').reverse().slice(0, 9);
 
 		res.status(200).json({
 			status: 200,
 			message: 'all events',
-			data: acceptedEvents,
+			data: accepted,
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
@@ -71,4 +69,20 @@ const POST_EVENT = (req, res, next) => {
 	}
 };
 
-export default { GET, POST_EVENT };
+const GET_PAGE = (req, res, next) => {
+	try {
+		const accepted = read('accepted');
+		const { page } = req.query;
+
+		res.status(201).json({
+			status: 201,
+			message: `Events ${page} - page`,
+			data: accepted.slice((page - 1) * 9, page * 9),
+		});
+		
+	} catch (error) {
+		next(new InternalServerError(500, error.message));
+	}
+};
+
+export default { GET, POST_EVENT, GET_PAGE };

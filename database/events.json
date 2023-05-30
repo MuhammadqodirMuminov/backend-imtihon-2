@@ -16,38 +16,6 @@
       "status": "pending"
    },
    {
-      "event_id": 4,
-      "event_name": "Node JS bo'yicha bilimlaringizni musobaqada sinovdan o'tkazing\n",
-      "event_description": "🔥 «Najot Ta'lim» Node JS bo'yicha o'z bilim va tajribalarini amaliyotda sinash istagi bo'lgan yurtimizdagi barcha dasturchilarni «Node coders» musobaqasiga chorlaydi.",
-      "event_date": "2023-06-09",
-      "event_time": "09:20",
-      "image": "16854350128733.jpg",
-      "event_activity": "ofline",
-      "event_link": "https://www.youtube.com/liver24",
-      "author": "Temurbek Athamov",
-      "author_job": "node js developer",
-      "author_phone": "998999741749",
-      "category": "1",
-      "subcategory": "12",
-      "status": "pending"
-   },
-   {
-      "event_id": 5,
-      "event_name": "«Osmondagi bolalar» loyihasi spikeri Bekzod Zakirov bilan master-klass!",
-      "event_description": "🔥 Kutib oling, «Najot Ta'lim»da ko‘plab xalqaro ta'lim grantlari g‘olibi, Tokyo universitetidan Ommaviy siyosat bo'yicha fan doktori, Jorj Vashington va Vestminister universitetlarida mustaqil tadqiqotchi hamda Yaponiya raqamli universiteti (JDU) prorektori — Dr. Bekzod Zakirov bilan master-klass bo'lib o'tadi.",
-      "event_date": "2023-06-10",
-      "event_time": "09:20",
-      "image": "16854363531844.jpg",
-      "event_activity": "ofline",
-      "event_link": "https://www.youtube.com/liver24",
-      "author": "Bekzod Zokirov",
-      "author_job": "biznesman",
-      "author_phone": "998999741749",
-      "category": "3",
-      "subcategory": "6",
-      "status": "pending"
-   },
-   {
       "event_id": 6,
       "event_name": "🏆 SMM yo'nalishi bo'yicha 60 nafar yigit-qizga grant e'lon qilamiz!",
       "event_description": "💥 SMM sohasiga qiziqishi bor va oʻz kelajagini koʻra olgan 60 nafar yigit-qiz uchun grant e'lon qilamiz. Grant g'oliblari suhbat orqali aniqlanadi va saralash «Najot Ta'lim» jamoasi a'zolari tomonidan onlayn tarzda o'tkaziladi. ",

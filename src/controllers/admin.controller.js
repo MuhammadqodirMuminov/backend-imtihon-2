@@ -56,6 +56,7 @@ const POST_PENDING = (req, res, next) => {
 		const filteredEvents = events.filter(event => event.event_id != id);
 
 		newAccaptedEvents.status = 'accepted';
+		newAccaptedEvents.event_id = accepted.at(-1).event_id + 1 || 1;
 
 		write('events', filteredEvents);
 		accepted.push(newAccaptedEvents);
@@ -84,6 +85,7 @@ const DELETE_PENDING = (req, res, next) => {
 		const filteredEvents = events.filter(event => event.event_id != id);
 
 		newDeletedEvent.status = 'ignored';
+		newDeletedEvent.event_id = ignored.at(-1).event_id + 1 || 1;
 
 		write('events', filteredEvents);
 		ignored.push(newDeletedEvent);
