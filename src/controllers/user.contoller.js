@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { InternalServerError } from '../utils/errors.js';
+import { BadRequest, InternalServerError } from '../utils/errors.js';
 import { read, write } from '../utils/model.js';
 
 const GET = (req, res, next) => {
@@ -51,6 +51,7 @@ const POST_EVENT = (req, res, next) => {
 			category,
 			subcategory,
 			status: 'pending',
+			view_count: 0,
 		};
 
 		image.mv(resolve('public', 'uploads', eventImage));
@@ -110,10 +111,30 @@ const GET_PAGE = (req, res, next) => {
 
 const GET_DETAIL = (req, res, next) => {
 	try {
+		const ip = req.ip;
+		const userAgent = req.get('user-agent');
+		const users = read('viewpage');
+
 		const { id } = req.params;
 		const accepted = read('accepted');
+		let eventDetail = accepted.find(event => event.event_id == id);
 
-		const eventDetail = accepted.find(event => event.event_id == id);
+		if (!eventDetail) {
+			return next(new BadRequest(400, 'This id has no event.'));
+		}
+
+		const existViewer = users.find(u => u.ip == ip && u.userAgent == userAgent && u.id == id);
+		const eventUpdate = accepted.filter(a => a.event_id != id);
+
+		if (!existViewer) {
+			const newViewer = { id, ip, userAgent };
+			users.push(newViewer);
+			write('viewpage', users);
+
+			eventDetail.view_count = eventDetail.view_count + 1;
+			eventUpdate.push(eventDetail);
+			write('accepted', eventUpdate);
+		}
 
 		res.status(200).json({
 			status: 200,
