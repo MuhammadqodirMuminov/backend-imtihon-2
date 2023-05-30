@@ -9,6 +9,8 @@ router.get('/', userContoller.GET);
 
 router.get('/events', userContoller.GET_PAGE);
 
+router.get('/event-detail/:id', userContoller.GET_DETAIL)
+
 router.post('/add-event', validate, userContoller.POST_EVENT);
 
 export default router;

@@ -71,18 +71,58 @@ const POST_EVENT = (req, res, next) => {
 
 const GET_PAGE = (req, res, next) => {
 	try {
-		const accepted = read('accepted');
-		const { page } = req.query;
+		let accepted = read('accepted');
+		const { page, date, subCategory, category, activity, name } = req.query;
 
-		res.status(201).json({
-			status: 201,
-			message: `Events ${page} - page`,
-			data: accepted.slice((page - 1) * 9, page * 9),
+		if (page) {
+			accepted = accepted.slice((page - 1) * 9, page * 9);
+		}
+
+		if (date) {
+			accepted = accepted.filter(a => a.event_date == date);
+		}
+
+		if (subCategory) {
+			accepted = accepted.filter(a => a.subcategory == subCategory);
+		}
+
+		if (category) {
+			accepted = accepted.filter(a => a.category == category);
+		}
+
+		if (activity) {
+			accepted = accepted.filter(a => a.event_activity == activity);
+		}
+
+		if (name) {
+			accepted = accepted.filter(a => a.author == name);
+		}
+
+		res.status(200).json({
+			status: 200,
+			message: `Events ${page ? page : ''} - page`,
+			data: accepted,
 		});
-		
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
 	}
 };
 
-export default { GET, POST_EVENT, GET_PAGE };
+const GET_DETAIL = (req, res, next) => {
+	try {
+		const { id } = req.params;
+		const accepted = read('accepted');
+
+		const eventDetail = accepted.find(event => event.event_id == id);
+
+		res.status(200).json({
+			status: 200,
+			message: `Events detail - page`,
+			data: eventDetail,
+		});
+	} catch (error) {
+		next(new InternalServerError(500, error.message));
+	}
+};
+
+export default { GET, POST_EVENT, GET_PAGE, GET_DETAIL };
