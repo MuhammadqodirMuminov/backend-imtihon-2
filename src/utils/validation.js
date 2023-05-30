@@ -5,14 +5,17 @@ export const LoginSchema = Joi.object({
 	password: Joi.string().min(5).max(100).required(),
 });
 
-// export const RegisterSchema = Joi.object({
-// 	username: Joi.string().min(2).max(32).pattern(new RegExp('^[a-z0-9]{3,30}$')).required(),
-// 	password: Joi.string().min(8).max(100).required(),
-// 	avatar: Joi.string().pattern(new RegExp('((jpe?g|png|gif|bmp))$')).required(),
-// });
-
-// export const VideoSchema = Joi.object({
-// 	title: Joi.string().max(35).required(),
-// 	video: Joi.string().pattern(new RegExp('((mp3|mov|avi|bmp))$')).required(),
-// 	size: Joi.number().required(),
-// });
+export const EventSchema = Joi.object({
+	event_date: Joi.date().required(),
+	event_time: Joi.string().required(),
+	image: Joi.string().pattern(new RegExp('((jpe?g|png|gif|bmp))$')).required(),
+	category: Joi.string().required(),
+	subcategory: Joi.string().required(),
+	event_activity: Joi.string().required(),
+	link: Joi.string().min(2).max(1000).required(),
+	author: Joi.string().min(2).max(32).pattern(new RegExp('^[a-zA-Z0-9]{3,30}')).required(),
+	author_job: Joi.string().required(),
+	author_phone: Joi.string().required(),
+	event_name: Joi.string().required(),
+	event_description: Joi.string().required(),
+});
