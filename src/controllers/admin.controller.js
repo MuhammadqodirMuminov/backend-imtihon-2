@@ -1,6 +1,6 @@
 import { BadRequest, InternalServerError, NotFountError } from '../utils/errors.js';
 import jwt from '../utils/jwt.js';
-import { read } from '../utils/model.js';
+import { read, write } from '../utils/model.js';
 
 const POST_LOGIN = (req, res, next) => {
 	try {
@@ -57,14 +57,42 @@ const POST_PENDING = (req, res, next) => {
 
 		newAccaptedEvents.status = 'accepted';
 
-		// write('events', filteredEvents);
+		write('events', filteredEvents);
 		accepted.push(newAccaptedEvents);
-		// write('accepted', accepted);
+		write('accepted', accepted);
 
 		res.status(200).json({
 			status: 200,
 			message: 'Event accepted by admin',
 			data: newAccaptedEvents,
+		});
+	} catch (error) {
+		next(new InternalServerError(500, error.message));
+	}
+};
+
+const DELETE_PENDING = (req, res, next) => {
+	try {
+		const events = read('events');
+		const ignored = read('ignored');
+		const { id } = req.params;
+
+		let newDeletedEvent = events.find(event => event.event_id == id);
+
+		if (!newDeletedEvent) next(new BadRequest(400, 'This id has no event.'));
+
+		const filteredEvents = events.filter(event => event.event_id != id);
+
+		newDeletedEvent.status = 'ignored';
+
+		write('events', filteredEvents);
+		ignored.push(newDeletedEvent);
+		write('ignored', ignored);
+
+		res.status(200).json({
+			status: 200,
+			message: 'Event ignored by admin',
+			data: newDeletedEvent,
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
@@ -85,4 +113,18 @@ const GET_ACCEPTED = (req, res, next) => {
 	}
 };
 
-export default { POST_LOGIN, GET_ACCEPTED, GET_PENDING, POST_PENDING };
+const GET_IGNORED = (req, res, next) => {
+	try {
+		const events = read('ignored');
+
+		res.status(200).json({
+			status: 200,
+			message: 'all ignored events ',
+			data: events,
+		});
+	} catch (error) {
+		next(new InternalServerError(500, error.message));
+	}
+};
+
+export default { POST_LOGIN, GET_ACCEPTED, GET_PENDING, POST_PENDING, DELETE_PENDING, GET_IGNORED };

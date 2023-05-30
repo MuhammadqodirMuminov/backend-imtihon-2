@@ -12,6 +12,10 @@ router.get('/pending', checkToken, adminController.GET_PENDING);
 
 router.put('/pending/:id', checkToken, adminController.POST_PENDING);
 
+router.delete('/pending/:id',checkToken, adminController.DELETE_PENDING)
+
 router.get('/accepted', checkToken, adminController.GET_ACCEPTED);
+
+router.get('/ignored',  checkToken, adminController. GET_IGNORED)
 
 export default router;
