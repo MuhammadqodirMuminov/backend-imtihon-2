@@ -16,22 +16,6 @@
       "status": "pending"
    },
    {
-      "event_id": 2,
-      "event_name": "node js boyicha kurs taqdimoti ",
-      "event_description": "🎉 najottalim.uz platformasi 4 yillik tajribaga ega mutaxassis, Telegramda milliondan ortiq foydalanuvchiga ega Telegram botlar dasturchisi Yunusjon Yusupov bilan birgalikda Onlayn Telegram bot kurslarini yo'lga qo'ymoqda.",
-      "event_date": "2023-05-05",
-      "event_time": "20:30",
-      "image": "16854346796001.jpg",
-      "event_activity": "online",
-      "event_link": "https://www.youtube.com/liver24",
-      "author": "muhammadyunus code",
-      "author_job": "node Js developer",
-      "author_phone": "998999741749",
-      "category": "1",
-      "subcategory": "12",
-      "status": "pending"
-   },
-   {
       "event_id": 3,
       "event_name": "«Najot Ta'lim»da 3D animatorlar o'rtasida musobaqa",
       "event_description": "3D animatorlar uchun soha mutaxassislari bilan netvorking qilish va o'z bilimlarini sinovdan o'tkazish imkoniyati. Kutib oling, «Najot Ta'lim»da 3D animatorlar o'rtasida katta musobaqa bo'lib o'tadi. ",
@@ -144,7 +128,7 @@
       "status": "pending"
    },
    {
-      "event_id": 11,
+      "event_id": 10,
       "event_name": "«Najot Ta'lim»ning 1 yillik hisoboti va yangiliklari bo'yicha ovozli suhbat ",
       "event_description": "«Najot Ta'lim» jamoasi faoliyati davomida doimiy ravishda yangilik va o'zgarishlar qilib borishga harakat qiladi. Albatta, bu kabi ishlar orqali ta'lim sifatini oshirish va uni zamon talablariga moslab borishni niyat qilganmiz.",
       "event_date": "2023-06-23",

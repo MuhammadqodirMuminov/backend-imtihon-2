@@ -1,3 +1,5 @@
+import { InternalServerError } from "../utils/errors";
+
 export default (req, res, next) => {
 	try {
 		const { token } = req.headers;
