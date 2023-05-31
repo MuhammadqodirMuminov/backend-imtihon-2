@@ -33,7 +33,7 @@ const swaggerDocs = swaggerJSDoc({
 			},
 			{
 				name: 'admin',
-				description: 'get - Admin control fully events',
+				description: 'Logs user into the system',
 			},
 		],
 	},

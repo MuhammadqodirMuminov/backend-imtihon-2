@@ -30,6 +30,23 @@
       "category": "1",
       "subcategory": "12",
       "status": "ignored",
-      "view_count" : 0
+      "view_count": 0
+   },
+   {
+      "event_id": 3,
+      "event_name": "😔 Dasturlashni o'rganmoqchiman, lekin nimadan boshlashni bilmayapman?",
+      "event_description": "Shunaqa paytda nima qilish kerakligini aytadigan, qaysi ishni qilsa xato bo'lishini aytib maslahat beradigan inson bo'lsa qanday yaxshi-a?",
+      "event_date": "2023-06-22",
+      "event_time": "09:30",
+      "image": "16854370545888.jpg",
+      "event_activity": "offline",
+      "event_link": "https://www.youtube.com",
+      "author": "Temurbek Athamov",
+      "author_job": "node js developer",
+      "author_phone": "998999741749",
+      "category": "4",
+      "subcategory": "8",
+      "status": "ignored",
+      "view_count": 0
    }
 ]

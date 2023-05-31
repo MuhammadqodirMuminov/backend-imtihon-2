@@ -66,6 +66,17 @@ components:
           type: string
         message:
           type: string
+    NotFoundResponse:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 404
+        name:
+          type: string
+          example: NotFoundError
+        message:
+          type: string
     ServerResponse:
       type: object
       properties:
@@ -164,8 +175,10 @@ components:
       properties:
         username:
           type: string
+          example: ali
         password:
           type: string
+          example: '123456789'
     LoginResponse:
       type: object
       properties:
@@ -178,90 +191,13 @@ components:
         data:
           type: object
           properties:
-            userid:
+            id:
               type: number
             username:
               type: string
-            avatar:
+            password:
               type: string
-    Video:
-      type: object
-      properties:
-        status:
-          type: number
-        message:
-          type: string
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              videoId:
-                type: number
-              title:
-                type: string
-              userid:
-                type: number
-              size:
-                type: number
-              created_at:
-                type: string
-              video:
-                type: string
-              description:
-                type: string
-              user:
-                type: object
-                properties:
-                  username:
-                    type: string
-                  avatar:
-                    type: string
-                  userid:
-                    type: number
-    PostVideo:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        video:
-          type: string
-          format: binary
-        userId:
-          type: string
-    VideoResponce:
-      type: object
-      properties:
-        status:
-          type: number
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            videoId:
-              type: number
-            title:
-              type: string
-            userid:
-              type: number
-            size:
-              type: number
-            created_at:
-              type: string
-            video:
-              type: string
-            description:
-              type: string
-    PutVideo:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
+
       
     
 

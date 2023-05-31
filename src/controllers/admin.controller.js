@@ -21,6 +21,7 @@ const POST_LOGIN = (req, res, next) => {
 			status: 200,
 			message: 'Successfully logged in.',
 			token,
+			data: checkAdmin,
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));

@@ -231,11 +231,12 @@
           application/json:
             schema:
               $ref: '#/components/schemas/ServerResponse'
-/login:
+/admin/login:
   post:
     tags:
       - admin
-    description: log in the app
+    summary: Logs user into the system
+    description: Logs user into the system
     requestBody:
       description: log in to the app
       content:
@@ -248,144 +249,165 @@
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Response'
-      '400':
-        description: Bad requiest
+              $ref: '#/components/schemas/LoginResponse'
+      '404':
+        description: Admin password or username wrong
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ErorResponse'
-      security:
-        - Bearer:
-            type: oauth2
-
-/admin/videos:
+              $ref: '#/components/schemas/NotFoundResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/admin/pending:
   get:
     tags:
-      - video
-    description: Get all of the videos
+      - admin
+    summary: Get all events which is pending status
+    description: Get all events which is pending status
     responses:
       '200':
-        description: All videos
+        description: Get all events which is pending status
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Video'
+              $ref: '#/components/schemas/Allaccepted'
       '400':
-        description: Bad requiest
+        description: Bad requiest or token required
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ErorResponse'
-    security:
-      - Bearer:
-          type: oauth2
-  post:
-    tags:
-      - video
-    description: post videos
-    requestBody:
-      description: post  a video  to app
-      content:
-        multipart/form-data:
-          schema:
-            $ref: '#/components/schemas/PostVideo'
-    responses:
-      '200':
-        description: post videos
+      '500':
+        description: During the request Internal ServerResponse
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VideoResponce'
-      '400':
-        description: Bad requiest
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ErorResponse'
+              $ref: '#/components/schemas/ServerResponse'
     security:
       - Bearer:
           type: oauth2
-/admin/videos/{videoId}:
+/admin/pending/{id}:
   put:
     tags:
-      - video
-    description: put video by id
+      - admin
+    summary: Admin is accept pending requests
+    description: Admin is accept pending requests
     parameters:
-      - name: videoId
+      - name: id
         in: path
         required: true
     required: true
-    requestBody:
-      description: put  a video  to app
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PutVideo'
     responses:
       '200':
-        description: put video
+        description: get event by id
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VideoResponce'
+              $ref: '#/components/schemas/Response'
       '400':
-        description: Bad requiest
+        description: Bad requiest during the send requiest
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
     security:
       - Bearer:
           type: oauth2
   delete:
     tags:
-      - video
-    description: delete video by id
+      - admin
+    summary: Admin is ignore requests
+    description: Admin is ignore requests
     parameters:
-      - name: videoId
+      - name: id
         in: path
         required: true
     required: true
     responses:
       '200':
-        description: delete video
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VideoResponce'
-      '400':
-        description: Bad requiest
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ErorResponse'
-    security:
-      - Bearer:
-          type: oauth2
-
-/admin/videos?userId={userId}:
-  get:
-    tags:
-      - video
-    description: search video by title
-    parameters:
-      - name: userId
-        in: query
-        required: true
-    responses:
-      '200':
-        description: searched videos
+        description:  Admin is ignore requests
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Response'
       '400':
-        description: Bad requiest
+        description: This id has no event
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+    security:
+      - Bearer:
+          type: oauth2
+/admin/accepted:
+  get:
+    tags:
+      - admin
+    summary: Get all events which is accepted status
+    description: Get all events which is accepted status
+    responses:
+      '200':
+        description: Get all events which is accepted status
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '400':
+        description: Bad requiest or token required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+    security:
+      - Bearer:
+          type: oauth2
+/admin/ignored:
+  get:
+    tags:
+      - admin
+    summary: Get all events which is ignored status
+    description: Get all events which is ignored status
+    responses:
+      '200':
+        description: Get all events which is ignored status
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '400':
+        description: Bad requiest or token required
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
     security:
       - Bearer:
           type: oauth2
