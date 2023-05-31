@@ -1,0 +1,391 @@
+/:
+  get:
+    tags:
+      - users
+    summary: Get all events which accepted by admin
+    description: Get all of the events using by this route which accepted
+    responses:
+      '200':
+        description: All accepted events which accepted
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '400':
+        description: Bad requiest during the get accepted events
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/events?page={page}:
+  get:
+    tags:
+      - users
+    summary: pagination events limit id  9
+    description: Pagination page limit by 9
+    parameters:
+      - name: page
+        in: query
+        required: true
+    responses:
+      '200':
+        description: get Pagination events
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/events?date={date}:
+  get:
+    tags:
+      - users
+    summary: filter events by date
+    description: filter events by date (test input 2020-05-05)
+    parameters:
+      - name: date
+        in: query
+        required: true
+    responses:
+      '200':
+        description: filter events by date
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/events?category={category}:
+  get:
+    tags:
+      - users
+    summary: filter events by category
+    description: filter events by date (test input 1)
+    parameters:
+      - name: category
+        in: query
+        required: true
+    responses:
+      '200':
+        description: filter events by category
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/events?activity={activity}:
+  get:
+    tags:
+      - users
+    summary: filter events by activity
+    description: filter events by date (test input offline)
+    parameters:
+      - name: activity
+        in: query
+        required: true
+    responses:
+      '200':
+        description: filter events by activity
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/events?name={name}:
+  get:
+    tags:
+      - users
+    summary: filter events by Author name
+    description: filter events by date (test input Bekzod Zokirov)
+    parameters:
+      - name: name
+        in: query
+        required: true
+    responses:
+      '200':
+        description: filter events by Author name
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/events?date={date}&category={category}&activity={activity}&name={name}:
+  get:
+    tags:
+      - users
+    summary: filter events by Author name
+    description: filter events by queries (test input [2023-06-10 ,3, offline, Bekzod Zokirov ])
+    parameters:
+      - name: date
+        in: query
+        required: true
+      - name: category
+        in: query
+        required: true
+      - name: activity
+        in: query
+        required: true
+      - name: name
+        in: query
+        required: true
+    responses:
+      '200':
+        description: filter events by queries
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Allaccepted'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/event-detail/{event_id}:
+  get:
+    tags:
+      - users
+    summary: get event detail by event_id
+    description: get event by id
+    parameters:
+      - name: event_id
+        in: path
+        required: true
+    required: true
+    responses:
+      '200':
+        description: get event by id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Response'
+      '400':
+        description: Bad requiest during the send requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/add-event:
+  post:
+    tags:
+      - users
+    description: Add event and send it to accepted 
+    requestBody:
+      description: Your event information here enter
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/schemas/AddEvent'
+    required: true
+    responses:
+      '201':
+        description: get added event 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Response'
+      '400':
+        description: Bad requiest during the send requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+      '500':
+        description: During the request Internal ServerResponse
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerResponse'
+/login:
+  post:
+    tags:
+      - admin
+    description: log in the app
+    requestBody:
+      description: log in to the app
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Login'
+    responses:
+      '200':
+        description: All users
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Response'
+      '400':
+        description: Bad requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+      security:
+        - Bearer:
+            type: oauth2
+
+/admin/videos:
+  get:
+    tags:
+      - video
+    description: Get all of the videos
+    responses:
+      '200':
+        description: All videos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Video'
+      '400':
+        description: Bad requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+    security:
+      - Bearer:
+          type: oauth2
+  post:
+    tags:
+      - video
+    description: post videos
+    requestBody:
+      description: post  a video  to app
+      content:
+        multipart/form-data:
+          schema:
+            $ref: '#/components/schemas/PostVideo'
+    responses:
+      '200':
+        description: post videos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoResponce'
+      '400':
+        description: Bad requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+    security:
+      - Bearer:
+          type: oauth2
+/admin/videos/{videoId}:
+  put:
+    tags:
+      - video
+    description: put video by id
+    parameters:
+      - name: videoId
+        in: path
+        required: true
+    required: true
+    requestBody:
+      description: put  a video  to app
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PutVideo'
+    responses:
+      '200':
+        description: put video
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoResponce'
+      '400':
+        description: Bad requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+    security:
+      - Bearer:
+          type: oauth2
+  delete:
+    tags:
+      - video
+    description: delete video by id
+    parameters:
+      - name: videoId
+        in: path
+        required: true
+    required: true
+    responses:
+      '200':
+        description: delete video
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoResponce'
+      '400':
+        description: Bad requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+    security:
+      - Bearer:
+          type: oauth2
+
+/admin/videos?userId={userId}:
+  get:
+    tags:
+      - video
+    description: search video by title
+    parameters:
+      - name: userId
+        in: query
+        required: true
+    responses:
+      '200':
+        description: searched videos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Response'
+      '400':
+        description: Bad requiest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErorResponse'
+    security:
+      - Bearer:
+          type: oauth2

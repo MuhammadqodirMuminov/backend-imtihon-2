@@ -9,6 +9,7 @@ import { PORT } from './config.js';
 import errorController from './controllers/error.controller.js';
 import adminRouter from './routes/admin.routes.js';
 import userRouter from './routes/user.routes.js';
+import swaggerRouter from './swagger.js';
 
 config();
 
@@ -23,5 +24,7 @@ app.use(express.static(join(resolve(), 'public', 'uploads')));
 app.use('/admin', adminRouter);
 app.use(userRouter);
 app.use(errorController.errorHandler);
+
+app.use('/api-docs', swaggerRouter);
 
 app.listen(PORT, () => console.log(`server has been started at ${PORT}`));

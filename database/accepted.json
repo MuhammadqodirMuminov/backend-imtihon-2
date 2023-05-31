@@ -68,23 +68,6 @@
       "view_count": 5
    },
    {
-      "event_id": 3,
-      "event_name": "It boyicha masterclasss",
-      "event_description": "Najot Ta'lim jamoasi o'z o'quvchilari uchun manfaatli bo'lgan musobaqalarni tashkil etishda davom etadi. Biz bu gal markazimizdagi uch soha vakillari, ya'ni UX/UI dizayner, frontend va backend dasturchilarni \"bir dasturxon atrofida\" to'plashga qaror qildik.\n",
-      "event_date": "2020-05-05",
-      "event_time": "05:56",
-      "image": "1685432439843WebStorm_Icon.svg.png",
-      "event_activity": "offline",
-      "event_link": "https://www.youtube.com/liver24",
-      "author": "Abbos Janizakov",
-      "author_job": "java developer",
-      "author_phone": "998-99-974-17-49",
-      "category": "1",
-      "subcategory": "1",
-      "status": "accepted",
-      "view_count": 1
-   },
-   {
       "event_id": 4,
       "event_name": "🏆 SMM yo'nalishi bo'yicha 60 nafar yigit-qizga grant e'lon qilamiz!",
       "event_description": "💥 SMM sohasiga qiziqishi bor va oʻz kelajagini koʻra olgan 60 nafar yigit-qiz uchun grant e'lon qilamiz. Grant g'oliblari suhbat orqali aniqlanadi va saralash «Najot Ta'lim» jamoasi a'zolari tomonidan onlayn tarzda o'tkaziladi. ",
@@ -117,5 +100,22 @@
       "subcategory": "11",
       "status": "accepted",
       "view_count": 2
+   },
+   {
+      "event_id": 3,
+      "event_name": "It boyicha masterclasss",
+      "event_description": "Najot Ta'lim jamoasi o'z o'quvchilari uchun manfaatli bo'lgan musobaqalarni tashkil etishda davom etadi. Biz bu gal markazimizdagi uch soha vakillari, ya'ni UX/UI dizayner, frontend va backend dasturchilarni \"bir dasturxon atrofida\" to'plashga qaror qildik.\n",
+      "event_date": "2020-05-05",
+      "event_time": "05:56",
+      "image": "1685432439843WebStorm_Icon.svg.png",
+      "event_activity": "offline",
+      "event_link": "https://www.youtube.com/liver24",
+      "author": "Abbos Janizakov",
+      "author_job": "java developer",
+      "author_phone": "998-99-974-17-49",
+      "category": "1",
+      "subcategory": "1",
+      "status": "accepted",
+      "view_count": 3
    }
 ]
