@@ -37,7 +37,7 @@ const POST_EVENT = (req, res, next) => {
 		const eventImage = Date.now() + image.name.replace(/\s/g, '');
 
 		const newEvent = {
-			event_id: events.at(-1).event_id + 1 || 1,
+			event_id: events.at(-1)?.event_id + 1 || 1,
 			event_name,
 			event_description,
 			event_date,
