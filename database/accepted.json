@@ -136,23 +136,6 @@
       "view_count": 2
    },
    {
-      "event_id": 5,
-      "event_name": "Najot talim quiz",
-      "event_description": "🔥 G'olib jamoa a'zolarini umumiy qiymati 3,5 mln so'mga yaqin sovg'alar va EduOn (https://eduon.uz/) platformasidan 6 mln so'mli ta'lim grantlar kutmoqda.",
-      "event_date": "2023-06-20",
-      "event_time": "09:30",
-      "image": "16854366740066.jpg",
-      "event_activity": "offline",
-      "event_link": "https://www.youtube.com/liver24",
-      "author": "Najot talim Jomoasi",
-      "author_job": "Dasturchilar",
-      "author_phone": "998999741749",
-      "category": "6",
-      "subcategory": "11",
-      "status": "accepted",
-      "view_count": 3
-   },
-   {
       "event_id": 8,
       "event_name": "Kod yozmasdan \"AyTishnik\" bo'lish mumkinmi?",
       "event_description": "Navbatdagi master-klass mehmoni QA (Quality Assurance) sohasida 5 yillik tajribaga ega, IMAN Invest tashkilotida Senior QA engineer bo‘lib ishlayotgan, «Najot Ta'lim»da QA kursi ustozi Xasan Valiyev bo'ladilar.",
@@ -168,5 +151,22 @@
       "subcategory": "5",
       "status": "accepted",
       "view_count": 1
+   },
+   {
+      "event_id": 5,
+      "event_name": "Najot talim quiz",
+      "event_description": "🔥 G'olib jamoa a'zolarini umumiy qiymati 3,5 mln so'mga yaqin sovg'alar va EduOn (https://eduon.uz/) platformasidan 6 mln so'mli ta'lim grantlar kutmoqda.",
+      "event_date": "2023-06-20",
+      "event_time": "09:30",
+      "image": "16854366740066.jpg",
+      "event_activity": "offline",
+      "event_link": "https://www.youtube.com/liver24",
+      "author": "Najot talim Jomoasi",
+      "author_job": "Dasturchilar",
+      "author_phone": "998999741749",
+      "category": "6",
+      "subcategory": "11",
+      "status": "accepted",
+      "view_count": 4
    }
 ]

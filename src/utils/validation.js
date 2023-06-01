@@ -27,6 +27,8 @@ export const EventSchema = Joi.object({
 	author: Joi.string().min(2).max(32).pattern(new RegExp('^[a-zA-Z0-9]{3,30}')).required(),
 	author_job: Joi.string().required(),
 	author_phone: Joi.string()
+		.min(2)
+		.max(12)
 		.pattern(new RegExp('^998'))
 		.required()
 		.error(new Error('phone is start with 998')),
