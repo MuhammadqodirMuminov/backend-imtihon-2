@@ -1,9 +1,9 @@
+import { get_admin } from '../model/admin.model.js';
 import { AuthorizationError, ForBiddenError, InternalServerError } from '../utils/errors.js';
 import jwt from '../utils/jwt.js';
-import { read } from '../utils/model.js';
 
-export default (req, res, next) => {
-	const admin = read('admin');
+export default async (req, res, next) => {
+	const admin = await get_admin();
 
 	try {
 		const { token } = req.headers;

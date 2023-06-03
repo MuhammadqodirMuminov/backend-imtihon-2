@@ -1,16 +1,22 @@
+import {
+	addToAccepted,
+	addToIgnored,
+	getAccepted,
+	getIgnored,
+	getPendingEvents,
+	get_admin,
+} from '../model/admin.model.js';
 import { BadRequest, InternalServerError, NotFountError } from '../utils/errors.js';
 import jwt from '../utils/jwt.js';
-import { read, write } from '../utils/model.js';
 
-const POST_LOGIN = (req, res, next) => {
+const POST_LOGIN = async (req, res, next) => {
 	try {
 		const { username, password } = req.body;
-		const admins = read('admin');
+		const admin = await get_admin();
 
-		const checkAdmin = admins.find(
+		const checkAdmin = admin.find(
 			admin => admin.username == username && admin.password == password
 		);
-
 		if (!checkAdmin) {
 			return next(new NotFountError(404, 'Username or password wrong.'));
 		}
@@ -28,102 +34,76 @@ const POST_LOGIN = (req, res, next) => {
 	}
 };
 
-const GET_PENDING = (req, res, next) => {
+const GET_PENDING = async (req, res, next) => {
 	try {
-		const events = read('events')
-			.reverse()
-			.filter(event => event.status == 'pending');
+		const pending = await getPendingEvents();
 
 		res.status(200).json({
 			status: 200,
 			message: 'all events',
-			data: events,
+			data: pending.reverse(),
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
 	}
 };
 
-const POST_PENDING = (req, res, next) => {
+const POST_PENDING = async (req, res, next) => {
 	try {
-		const events = read('events');
-		const accepted = read('accepted');
-		const { id } = req.params;
+		const toAccepted = await addToAccepted(req.params);
 
-		let newAccaptedEvents = events.find(event => event.event_id == id);
-
-		if (!newAccaptedEvents) next(new BadRequest(400, 'This id has no event.'));
-
-		const filteredEvents = events.filter(event => event.event_id != id);
-
-		newAccaptedEvents.status = 'accepted';
-		newAccaptedEvents.event_id = accepted.at(-1).event_id + 1 || 1;
-
-		write('events', filteredEvents);
-		accepted.push(newAccaptedEvents);
-		write('accepted', accepted);
+		if (toAccepted.length == 0) {
+			next(new BadRequest(400, 'This Id has no event.'));
+		}
 
 		res.status(200).json({
 			status: 200,
 			message: 'Event accepted by admin',
-			data: newAccaptedEvents,
+			data: toAccepted[0],
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
 	}
 };
 
-const DELETE_PENDING = (req, res, next) => {
+const DELETE_PENDING = async (req, res, next) => {
 	try {
-		const events = read('events');
-		const ignored = read('ignored');
-		const { id } = req.params;
+		const toIgnored = await addToIgnored(req.params);
 
-		let newDeletedEvent = events.find(event => event.event_id == id);
-
-		if (!newDeletedEvent) next(new BadRequest(400, 'This id has no event.'));
-
-		const filteredEvents = events.filter(event => event.event_id != id);
-
-		newDeletedEvent.status = 'ignored';
-		newDeletedEvent.event_id = ignored.at(-1).event_id + 1 || 1;
-
-		write('events', filteredEvents);
-		ignored.push(newDeletedEvent);
-		write('ignored', ignored);
+		if (toIgnored.length == 0) next(new BadRequest(400, 'This id has already managed.'));
 
 		res.status(200).json({
 			status: 200,
 			message: 'Event ignored by admin',
-			data: newDeletedEvent,
+			data: toIgnored,
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
 	}
 };
 
-const GET_ACCEPTED = (req, res, next) => {
+const GET_ACCEPTED = async (req, res, next) => {
 	try {
-		const events = read('accepted');
+		const accepted = await getAccepted();
 
 		res.status(200).json({
 			status: 200,
 			message: 'all accepted events ',
-			data: events,
+			data: accepted,
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
 	}
 };
 
-const GET_IGNORED = (req, res, next) => {
+const GET_IGNORED = async (req, res, next) => {
 	try {
-		const events = read('ignored');
+		const ignored = await getIgnored();
 
 		res.status(200).json({
 			status: 200,
 			message: 'all ignored events ',
-			data: events,
+			data: ignored,
 		});
 	} catch (error) {
 		next(new InternalServerError(500, error.message));
